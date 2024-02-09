@@ -7,6 +7,7 @@ var snake = [{
 },
 ]
 var d = 39;
+var ctr = 0;
 
 var food = {
     x: (parseInt(Math.random()*500/25))*25,
@@ -114,6 +115,7 @@ function everyInterval(){
     drawSnake();
 
     if(snake[0].x == food.x && snake[0].y == food.y){
+        ctr++;
         newfood();
         snake.push(snakeog[snakeog.length-1])
     }
@@ -143,5 +145,5 @@ let intervalId = setInterval(everyInterval, 125);
 function stop(){
     clearInterval(intervalId);
     console.log('stop');
-
+    alert("Score : "+ ctr);
 }
