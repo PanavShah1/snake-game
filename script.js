@@ -24,9 +24,12 @@ function drawSnake(){
         ctx.rect(snake[i].x, snake[i].y, 25, 25);
         ctx.fill();
     }
+    ctx.closePath();
+    ctx.beginPath();
     ctx.fillStyle = "red";
     ctx.rect(snake[0].x, snake[0].y, 25, 25);
     ctx.fill();
+    ctx.closePath()
 }
 
 window.onload = function(){
@@ -99,11 +102,15 @@ function everyInterval(){
         snake[i] = snakeog[i-1]
     }
 
-    if (snake[0].x<0||snake[0].x>=500||snake[0].y<0||snake[0].y>=500) {
-        snake = snakeog;
-        console.log(snake, snakeog);
+    // if (snake[0].x<0||snake[0].x>=500||snake[0].y<0||snake[0].y>=500) {
+    //     snake = snakeog;
+    //     console.log(snake, snakeog);
+    // }
+    if (snake[0].x<0) snake[0].x=475
+    else if (snake[0].x>=500) snake[0].x=0
+    else if (snake[0].y<0) snake[0].y=475
+    else if (snake[0].y>=500) snake[0].y=0
 
-    }
     drawSnake();
 
     if(snake[0].x == food.x && snake[0].y == food.y){
@@ -111,7 +118,30 @@ function everyInterval(){
         snake.push(snakeog[snakeog.length-1])
     }
     drawFood();
+
+    for(let i = 1; i<snake.length; i++){
+        if(snake[0].x==snake[i].x && snake[0].y==snake[i].y){
+            stop();
+            console.log('stop');
+        }
+    }
+    try{
+        if(snake[0].x==snakeog[1].x&&snake[0].y==snakeog[1].y){
+            stop();
+            console.log('try')
+        }
+    }
+    catch{
+        // console.log('catch')
+    }
+    
 }
 
 
-setInterval(everyInterval, 250);
+let intervalId = setInterval(everyInterval, 125);
+
+function stop(){
+    clearInterval(intervalId);
+    console.log('stop');
+
+}
