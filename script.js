@@ -118,6 +118,8 @@ function everyInterval(){
         ctr++;
         newfood();
         snake.push(snakeog[snakeog.length-1])
+        var score_cont = document.getElementById("score");
+        score_cont.innerText = ctr;
     }
     drawFood();
 
@@ -145,5 +147,5 @@ let intervalId = setInterval(everyInterval, 125);
 function stop(){
     clearInterval(intervalId);
     console.log('stop');
-    alert("Score : "+ ctr);
+    // alert("Score : "+ ctr);
 }
