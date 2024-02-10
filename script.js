@@ -16,7 +16,7 @@ var food = {
 
 function drawSnake(){
     ctx.clearRect(0, 0, 500, 500);
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "rgb(245, 7, 201)";
     ctx.beginPath();
     // ctx.rect(snake[0].x, snake[0].y, 25, 25);
     // ctx.fill();
@@ -27,7 +27,7 @@ function drawSnake(){
     }
     ctx.closePath();
     ctx.beginPath();
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "blue";
     ctx.rect(snake[0].x, snake[0].y, 25, 25);
     ctx.fill();
     ctx.closePath()
@@ -46,22 +46,22 @@ function handleKeyDown(event){
     switch(event.keyCode){
 
         case 37: //left
-        d=37;
+        if(d!=39) d=37;
         // drawSnake();
         break;
 
         case 38: //up
-        d=38;
+        if(d!=40) d=38;
         // drawSnake();
         break;
 
         case 39: //right
-        d=39;
+        if(d!=37) d=39;
         // drawSnake();
         break;
 
         case 40: //down
-        d=40;
+        if(d!=38) d=40;
         // drawSnake();
         break;
     }
@@ -127,15 +127,15 @@ function everyInterval(){
             console.log('stop');
         }
     }
-    try{
-        if(snake[0].x==snakeog[1].x&&snake[0].y==snakeog[1].y){
-            stop();
-            console.log('try')
-        }
-    }
-    catch{
-        // console.log('catch')
-    }
+    // try{
+    //     if(snake[0].x==snakeog[1].x&&snake[0].y==snakeog[1].y){
+    //         stop();
+    //         console.log('try')
+    //     }
+    // }
+    // catch{
+    //     // console.log('catch')
+    // }
     
 }
 
